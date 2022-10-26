@@ -13,7 +13,7 @@
             ]
         },
         {
-            "name": "Start and Debugger",
+            "name": "Start Server and Debugger",
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
