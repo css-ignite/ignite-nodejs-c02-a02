@@ -1,10 +1,20 @@
 import { v4 as uuidV4 } from "uuid";
 
+/*
+  Classe para representar a entidade de categoria
+ */
+
 class Category {
   id?: string;
   name: string;
   description: string;
   created_at: Date;
+
+  /*
+    Método construtor da classe
+    Neste caso eu estou utilizando o uuid para gerar um id único para a categoria
+    Ele só sera gerado se o id não existir
+   */
 
   constructor() {
     if (!this.id) {
@@ -12,5 +22,10 @@ class Category {
     }
   }
 }
+
+/*
+  Aqui eu exporto a classe Category
+  para que ela possa ser usada em outros arquivos
+ */
 
 export { Category };
