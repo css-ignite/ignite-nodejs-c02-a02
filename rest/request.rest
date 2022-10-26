@@ -1,18 +1,4 @@
 
-GET http://localhost:3333
-
-###
-
-POST http://localhost:3333/courses HTTP/1.1
-Content-Type: application/json
-Accept: application/json
-
-{
-    "name" : "NodeJS"
-}
-
-###
-
 GET http://localhost:3333/categories
 
 ###
@@ -22,6 +8,6 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "name" : "NodeJS",
-    "description" : "NodeJS"
+    "name" : "SUV",
+    "description" : "Veículo utilitário esportivo ou Veículo Desportivo"
 }
