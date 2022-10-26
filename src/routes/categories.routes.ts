@@ -41,16 +41,23 @@ function catecoryAlreadyExists(request, response, next) {
     para verificar se a categoria existe
    */
 
-  const categoryAlreadyExists = categoriesRepository.findByName(name);
+  const category = categoriesRepository.findByName(name);
 
   /*
     Se a categoria já existir eu retorno um erro para o usuário
     e não deixo o usuário criar uma nova categoria
    */
 
-  if (categoryAlreadyExists) {
+  if (category) {
     return response.status(400).json({ error: "Category already exists!" });
   }
+
+  /*
+    Aqui eu adiciono a categoria localizada no response
+    para que ela possa ser usada em outros middlewares 
+   */
+
+  response.category = category;
 
   /*
     Aqui eu retorno o next() para que o middleware continue
@@ -78,16 +85,23 @@ function categoryDontExists(request, response, next) {
     para verificar se a categoria existe
    */
 
-  const categoryAlreadyExists = categoriesRepository.findByName(name);
+  const category = categoriesRepository.findByName(name);
 
   /*
     Se a categoria não existir eu retorno um erro para o usuário
     e não deixo ele efetuar a operação pois o recurso não existe
    */
 
-  if (!categoryAlreadyExists) {
+  if (!category) {
     return response.status(400).json({ error: "Category dont exists!" });
   }
+
+  /*
+    Aqui eu adiciono a categoria localizada no response
+    para que ela possa ser usada em outros middlewares 
+   */
+
+  response.category = category;
 
   /*
     Aqui eu retorno o next() para que o middleware continue
@@ -101,8 +115,37 @@ function categoryDontExists(request, response, next) {
  */
 
 categoriesRoutes.get("/", (request, response) => {
+  /*
+    Constante para armazenar todas as categorias listadas pelo método list do CategoriesRepository
+   */
+
   const listOfCategories = categoriesRepository.list();
+
+  /* 
+    Retorno da lista de categorias
+   */
+
   return response.status(200).json(listOfCategories);
+});
+
+/*
+  Rota para listar uma categoria específica pelo nome
+  Nesta rota eu uso o middleware categoryDontExists para verificar se a categoria existe
+  antes de listar a categoria
+ */
+
+categoriesRoutes.get("/:name", categoryDontExists, (request, response) => {
+  const { name } = request.params;
+
+  /*
+   */
+  const category = categoriesRepository.findByName(name);
+
+  /*
+    Retorno da categoria encontrada
+   */
+
+  return response.status(200).json(category);
 });
 
 /*
