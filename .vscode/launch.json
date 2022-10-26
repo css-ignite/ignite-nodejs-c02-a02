@@ -2,24 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debugger",
-            "type": "node",
-            "request": "attach",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
-        },
-        {
-            "name": "Start Server and Debugger",
+            "name": "Run and Debugger",
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
             "program": "${workspaceFolder}/src/server.ts",
             "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
+            "internalConsoleOptions": "openOnFirstSessionStart",
             "autoAttachChildProcesses": true,
             "restart": true,
             "sourceMaps": true,
@@ -37,13 +26,18 @@
             ],
             "env": {
                 "NODE_ENV": "development"
-            },
-            "sourceMapPathOverrides": {
-                "webpack:///./*": "${workspaceFolder}/*",
-                "webpack:///src/*": "${workspaceFolder}/src/*",
-                "webpack:///*": "*",
-                "webpack:///./~/*": "${workspaceFolder}/node_modules/*"
             }
+        },
+        {
+            "name": "Attach Debugger",
+            "type": "node",
+            "request": "attach",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
         }
     ]
 }
