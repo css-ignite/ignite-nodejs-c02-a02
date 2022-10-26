@@ -1,4 +1,6 @@
 {
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Omni",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     }
