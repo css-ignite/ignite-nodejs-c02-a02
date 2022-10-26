@@ -7,6 +7,28 @@
             "request": "launch",
             "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
             "program": "${workspaceFolder}/src/server.ts",
+            "console": "internalConsole",
+            "internalConsoleOptions": "neverOpen",
+            "autoAttachChildProcesses": true,
+            "restart": true,
+            "sourceMaps": true,
+            "smartStep": true,
+            "trace": true,
+            "showAsyncStacks": true,
+            "timeout": 30000,
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            }
+        },
+        {
+            "name": "Run and Debugger With Log",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
+            "program": "${workspaceFolder}/src/server.ts",
             "console": "integratedTerminal",
             "internalConsoleOptions": "openOnFirstSessionStart",
             "autoAttachChildProcesses": true,
@@ -16,8 +38,6 @@
             "trace": true,
             "showAsyncStacks": true,
             "timeout": 30000,
-            "protocol": "inspector",
-            "traceResponse": true,
             "skipFiles": [
                 "<node_internals>/**"
             ],
