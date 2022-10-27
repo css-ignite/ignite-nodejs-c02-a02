@@ -11,7 +11,7 @@ class Category {
   created_at: Date;
 
   /*
-    Método construtor da classe
+    Método construtor da classe de categorias
     Neste caso eu estou utilizando o uuid para gerar um id único para a categoria
     Ele só sera gerado se o id não existir
    */
