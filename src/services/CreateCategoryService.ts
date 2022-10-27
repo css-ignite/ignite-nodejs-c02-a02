@@ -5,7 +5,7 @@
   um motivo para ser alterada.
  */
 
-import { CategoriesRepository } from "../repositories/categoriesRepository";
+import { CategoriesRepository } from "../repositories/CategoriesRepository";
 
 /*
   Interface para tipar o objeto que será passado como parâmetro para o método execute

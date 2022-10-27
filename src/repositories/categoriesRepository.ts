@@ -7,9 +7,9 @@
 import { Category } from "../models/category";
 
 /*
-  Interface para tipar o objeto que será passado como parâmetro para o método execute
-  do CreateCategoryService.
-*/
+    Interface para tipar o objeto que será passado como parâmetro para o método execute
+    do CreateCategoryService.
+  */
 
 interface ICreateCategoryDTO {
   name: string;
@@ -17,44 +17,44 @@ interface ICreateCategoryDTO {
 }
 
 /*
-  Repositório de categorias
-  Aqui eu crio uma classe para abstrair a lógica de manipulação de dados
-  e deixar o código mais limpo e organizado
- */
+    Repositório de categorias
+    Aqui eu crio uma classe para abstrair a lógica de manipulação de dados
+    e deixar o código mais limpo e organizado
+   */
 
 class CategoriesRepository {
   /*
-    Variável privada para armazenar as categorias
-   */
+      Variável privada para armazenar as categorias
+     */
 
   private categories: Category[];
 
   /*
-    Método constuctor para instaciar o objeto para armazenar as categorias
-   */
+      Método constuctor para instaciar o objeto para armazenar as categorias
+     */
 
   constructor() {
     this.categories = [];
   }
 
   /*
-    Método para criar uma nova categoria
-    Aqui eu crio uma nova categoria e passo o objeto com as informações da categoria
-   */
+      Método para criar uma nova categoria
+      Aqui eu crio uma nova categoria e passo o objeto com as informações da categoria
+     */
 
   create({ name, description }: ICreateCategoryDTO) {
     /* 
-      Constante para armazenar a nova categoria
-    */
+        Constante para armazenar a nova categoria
+      */
 
     const category = new Category();
 
     /*
-      Aqui eu passo as informações da categoria para a nova categoria
-      O Objtect.assign é uma função do javascript que recebe dois parâmetros
-      o primeiro é o objeto que será alterado e o segundo é o objeto que será
-      usado para alterar o primeiro objeto
-     */
+        Aqui eu passo as informações da categoria para a nova categoria
+        O Objtect.assign é uma função do javascript que recebe dois parâmetros
+        o primeiro é o objeto que será alterado e o segundo é o objeto que será
+        usado para alterar o primeiro objeto
+       */
 
     Object.assign(category, {
       name,
@@ -63,52 +63,52 @@ class CategoriesRepository {
     });
 
     /*
-      Aqui eu adiciono a nova categoria no array de categorias
-     */
+        Aqui eu adiciono a nova categoria no array de categorias
+       */
 
     this.categories.push(category);
 
     /*
-      Aqui eu retorno a nova categoria
-     */
+        Aqui eu retorno a nova categoria
+       */
 
     return category;
   }
 
   /*
-    Método para retornar a lista de categorias
-    Aqui eu retorno a lista de categorias
-   */
+      Método para retornar a lista de categorias
+      Aqui eu retorno a lista de categorias
+     */
 
   list() {
     /*
-      Aqui eu retorno a lista de categorias
-     */
+        Aqui eu retorno a lista de categorias
+       */
 
     return this.categories;
   }
 
   /*
-    Método para retornar uma categoria pelo nome
-    Aqui eu retorno uma categoria pelo nome
-   */
+      Método para retornar uma categoria pelo nome
+      Aqui eu retorno uma categoria pelo nome
+     */
 
   findByName(name: string) {
     /*
-      Constante para armazenar a categoria encontrada
-     */
+        Constante para armazenar a categoria encontrada
+       */
 
     const category = this.categories.find((category) => category.name === name);
 
     /*
-      Aqui eu retorno a categoria localizada pelo nome
-     */
+        Aqui eu retorno a categoria localizada pelo nome
+       */
     return category;
   }
 }
 
 /*
-  Aqui eu exporto a classe CategoriesRepository para que ela possa ser usada em outros arquivos
- */
+    Aqui eu exporto a classe CategoriesRepository para que ela possa ser usada em outros arquivos
+   */
 
 export { CategoriesRepository };

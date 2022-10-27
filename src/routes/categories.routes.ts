@@ -12,7 +12,7 @@ import { Router } from "express";
   e o CreateCategoryService para criar uma nova categoria
  */
 
-import { CategoriesRepository } from "../repositories/categoriesRepository";
+import { CategoriesRepository } from "../repositories/CategoriesRepository";
 import { CreateCategoryService } from "../services/CreateCategoryService";
 
 /*
