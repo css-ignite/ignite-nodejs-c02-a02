@@ -1,4 +1,4 @@
-import { Category } from "../models/CategoryModel";
+import { CategoryModel } from "../models/CategoryModel";
 
 /*
     Interface para tipar o objeto que será passado como parâmetro para o método execute
@@ -31,8 +31,8 @@ interface ICreateCategoryDTO {
  */
 
 interface ICategoryRepository {
-  findByName(name: string): Category;
-  list(): Category[];
+  findByName(name: string): CategoryModel;
+  list(): CategoryModel[];
   create({ name, description }: ICreateCategoryDTO): void;
 }
 

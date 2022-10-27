@@ -4,7 +4,7 @@ import { v4 as uuidV4 } from "uuid";
   Classe para representar a entidade de categoria
  */
 
-class Category {
+class CategoryModel {
   id?: string;
   name: string;
   description: string;
@@ -28,4 +28,4 @@ class Category {
   para que ela possa ser usada em outros arquivos
  */
 
-export { Category };
+export { CategoryModel };

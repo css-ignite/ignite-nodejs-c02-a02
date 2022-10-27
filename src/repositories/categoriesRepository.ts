@@ -4,7 +4,7 @@
   e para criar uma nova categoria
  */
 
-import { Category } from "../models/CategoryModel";
+import { CategoryModel } from "../models/CategoryModel";
 import {
   ICategoryRepository,
   ICreateCategoryDTO,
@@ -37,7 +37,7 @@ class CategoriesRepository implements ICategoryRepository {
       Variável privada para armazenar as categorias
      */
 
-  private categories: Category[];
+  private categories: CategoryModel[];
 
   /*
       Método constuctor para instaciar o objeto para armazenar as categorias
@@ -57,7 +57,7 @@ class CategoriesRepository implements ICategoryRepository {
         Constante para armazenar a nova categoria
       */
 
-    const category = new Category();
+    const category = new CategoryModel();
 
     /*
         Aqui eu passo as informações da categoria para a nova categoria
