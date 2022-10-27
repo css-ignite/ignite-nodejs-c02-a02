@@ -1,6 +1,6 @@
 import { v4 as uuidV4 } from "uuid";
 
-class SpecificationModel {
+class SpecificationsModel {
   id?: string;
   name: string;
   description: string;
@@ -13,4 +13,4 @@ class SpecificationModel {
   }
 }
 
-export { SpecificationModel };
+export { SpecificationsModel };
