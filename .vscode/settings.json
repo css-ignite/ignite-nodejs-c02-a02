@@ -1,6 +1,4 @@
 {
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Omni",
     "files.eol": "\n",
     "editor.renderWhitespace": "all",
     "editor.codeActionsOnSave": {

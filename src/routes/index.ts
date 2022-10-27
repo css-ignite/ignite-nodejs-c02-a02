@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { categoriesRoutes } from "./categories.routes";
 import { specificationsRoutes } from "./spacifications.routes";
+import { swaggerRoutes } from "./swagger.routes";
 
 const router = Router();
 
@@ -11,24 +12,15 @@ const router = Router();
  *   post:
  *     tags:
  *       - categories
- *     summary: categories
- *     description: Adicionar uma categoria
+ *     summary: Cadastro de categorias
+ *     description: Cadastrar uma nova categoria
  *     operationId: addCategory
  *     requestBody:
  *       description: Criar uma categoria
  *       content:
- *         application/json:
+ *        application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 description: Nome da Categoria.
- *                 example: Nome da Categoria
- *               description:
- *                 type: string
- *                 description: Descrição da Categoria.
- *                 example: Descrição da Categoria
+ *             $ref: '#/components/schemas/Category'
  *       required: true
  *     responses:
  *      '200':
@@ -36,23 +28,36 @@ const router = Router();
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Pet'
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  description: Mensagem de sucesso.
+ *                  example: Category created successfully!
+ *                data:
+ *                  $ref: '#/components/schemas/Category'
  *      '405':
  *        description: Invalid input
  *   get:
  *     tags:
  *       - categories
- *     summary: categories
- *     description: Listar categorias
+ *     summary: Listar categorias
+ *     description: Listar todas as categorias cadastradas
  *     responses:
- *       200:
- *         description: Returns a mysterious string.
+ *      '200':
+ *        description: Successful operation
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                  $ref: '#/components/schemas/Category'
  * /categories/{name}:
  *   get:
  *     tags:
  *       - categories
- *     summary: categories
- *     description: Listar categoria pelo nome
+ *     summary: Listar categorias
+ *     description: Listar categorias pelo nome
  *     operationId: getCategoriesByName
  *     parameters:
  *       - name: name
@@ -63,7 +68,17 @@ const router = Router();
  *           type: string
  *     responses:
  *       200:
- *         description: Returns a mysterious string.
+ *        description: Successful operation
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Category'
+ *       400:
+ *         description: Category dont exists!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
  */
 router.use("/categories", categoriesRoutes);
 
@@ -72,25 +87,16 @@ router.use("/categories", categoriesRoutes);
  * /specifications:
  *   post:
  *     tags:
- *       - specifications
- *     summary: specifications
- *     description: Adicionar uma specifications
- *     operationId: addspecifications
+ *       - especificações
+ *     summary: Cadastro de especificações
+ *     description: Cadastrar uma nova especificação
+ *     operationId: addSpecifications
  *     requestBody:
- *       description: Criar uma specifications
+ *       description: Criar uma especificação
  *       content:
- *         application/json:
+ *        application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 description: Nome da specifications.
- *                 example: Nome da specifications
- *               description:
- *                 type: string
- *                 description: Descrição da specifications.
- *                 example: Descrição da specifications
+ *             $ref: '#/components/schemas/Specifications'
  *       required: true
  *     responses:
  *      '200':
@@ -98,35 +104,64 @@ router.use("/categories", categoriesRoutes);
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Pet'
- *      '405':
- *        description: Invalid input
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  description: Mensagem de sucesso.
+ *                  example: Specifications created successfully!
+ *                data:
+ *                  $ref: '#/components/schemas/Specifications'
+ *      '400':
+ *        description: Specifications already exists!
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/ApiError'
  *   get:
  *     tags:
- *       - specifications
- *     summary: specifications
- *     description: Listar specifications
+ *       - especificações
+ *     summary: Listar especificações
+ *     description: Listar todas as especificações cadastradas
  *     responses:
- *       200:
- *         description: Returns a mysterious string.
+ *      '200':
+ *        description: Successful operation
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                  $ref: '#/components/schemas/Specifications'
  * /specifications/{name}:
  *   get:
  *     tags:
- *       - specifications
- *     summary: specifications
- *     description: Listar specification pelo nome
- *     operationId: getPetById
+ *       - especificações
+ *     summary: Listar especificações
+ *     description: Listar especificações pelo nome
+ *     operationId: getSpecificationsByName
  *     parameters:
  *       - name: name
  *         in: path
- *         description: Nome da specification
+ *         description: Nome da especificação
  *         required: true
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Retorna uma specifications.
+ *         description: Successful operation
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Specifications'
+ *       400:
+ *         description: Specifications dont exists!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
  */
 router.use("/specifications", specificationsRoutes);
+
+router.use(swaggerRoutes);
 
 export { router };

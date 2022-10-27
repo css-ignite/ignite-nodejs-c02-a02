@@ -1,44 +1,10 @@
 import express from "express";
-import swaggerJsDoc from "swagger-jsdoc";
-import swaggerUi from "swagger-ui-express";
 
 import { router } from "./routes";
 
 const app = express();
 
-const swaggerOptions = {
-  swaggerDefinition: {
-    openapi: "3.0.3",
-    info: {
-      title: "Swagger Petstore - OpenAPI 3.0",
-      description:
-        "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about\nSwagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!\nYou can now help us improve the API whether it's by making changes to the definition itself or to the code.\nThat way, with time, we can improve the API in general, and expose some of the new features in OAS3.\n\n_If you're looking for the Swagger 2.0/OAS 2.0 version of Petstore, then click [here](https://editor.swagger.io/?url=https://petstore.swagger.io/v2/swagger.yaml). Alternatively, you can load via the `Edit > Load Petstore OAS 2.0` menu option!_\n\nSome useful links:\n- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)\n- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)",
-      termsOfService: "http://swagger.io/terms/",
-      contact: {
-        email: "apiteam@swagger.io",
-      },
-      license: {
-        name: "Apache 2.0",
-        url: "http://www.apache.org/licenses/LICENSE-2.0.html",
-      },
-      version: "1.0.11",
-    },
-    externalDocs: {
-      description: "Find out more about Swagger",
-      url: "http://swagger.io",
-    },
-    servers: [
-      {
-        url: "http://localhost:3333",
-      },
-    ],
-  },
-  apis: ["**/*.ts"],
-};
-
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
 app.use(express.json());
-app.use(router);
+app.use("/v1", router);
+
 app.listen(3333, () => console.log("Server is running!"));
