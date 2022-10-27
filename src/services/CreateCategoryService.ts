@@ -5,7 +5,15 @@
   um motivo para ser alterada.
  */
 
-import { CategoriesRepository } from "../repositories/CategoriesRepository";
+/*
+  Importando o contrato ICategoriesRepository
+  Desta forma eu posso usar o contrato para tipar o objeto
+  Este contrato foi criado para respeitar o princípio de
+  Liskov Substitution Principle onde eu posso substituir uma classe
+  por outra que implemente o mesmo contrato
+ */
+
+import { ICategoryRepository } from "../repositories/ICategoriesRepository";
 
 /*
   Interface para tipar o objeto que será passado como parâmetro para o método execute
@@ -29,9 +37,22 @@ class CreateCategoryService {
     Aqui eu não preciso mais instanciar o CategoriesRepository
     pois ele já está sendo instanciado no arquivo de rotas
     e passado como parâmetro para o service
+
+    Aqui eu passo o objeto que implementa o contrato ICategoryRepository
+    para o service de criação de categoria garantindo que o service
+    poderá receber qualquer objeto que implemente o contrato ICategoryRepository
+
+    Este é o conceito de Liskov Substitution Principle onde eu posso substituir uma classe
+    por outra que implemente o mesmo contrato
+
+    Agora, se eu quiser trocar o repositório de categoria por outro
+    eu não preciso alterar o service de criação de categoria
+    pois o service de criação de categoria não depende diretamente
+    do repositório de categoria, ele depende apenas do contrato
+    ICategoryRepository
   */
 
-  constructor(private categoriesRepository: CategoriesRepository) {
+  constructor(private categoriesRepository: ICategoryRepository) {
     /* 
       Comentado pois o private no construtor abstrai este comando
       O constructor com private no parâmetro já faz a mesma coisa que o comentário abaixo

@@ -5,24 +5,34 @@
  */
 
 import { Category } from "../models/category";
-
-/*
-    Interface para tipar o objeto que será passado como parâmetro para o método execute
-    do CreateCategoryService.
-  */
-
-interface ICreateCategoryDTO {
-  name: string;
-  description: string;
-}
+import {
+  ICategoryRepository,
+  ICreateCategoryDTO,
+} from "./ICategoriesRepository";
 
 /*
     Repositório de categorias
     Aqui eu crio uma classe para abstrair a lógica de manipulação de dados
     e deixar o código mais limpo e organizado
+
+    Aqui eu implemento a interface ICategoryRepository
+    para garantir que a classe CategoriesRepository implemente todos os métodos
+    da interface ICategoryRepository
+
+    Estou utilizando o conceito de Liskov Substitution Principle
+    onde eu posso substituir uma classe por outra que implemente o mesmo contrato
+    e assim garantir que o service de criação de categoria não dependa diretamente
+    do repositório de categoria, ele depende apenas do contrato
+    ICategoryRepository
+
+    note que estou utilizando o conceito de Liskov Substitution Principle
+    para criar uma classe que implemente a interface ICategoryRepository
+    Garantindo assim que a implementação da classe CategoriesRepository
+    implemente todos os métodos da interface ICategoryRepository
+    respeitando o contrato da interface ICategoryRepository
    */
 
-class CategoriesRepository {
+class CategoriesRepository implements ICategoryRepository {
   /*
       Variável privada para armazenar as categorias
      */
