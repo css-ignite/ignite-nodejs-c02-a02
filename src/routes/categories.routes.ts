@@ -2,9 +2,11 @@ import { Router } from "express";
 
 import { CategoriesRepository } from "../modules/cars/repositories/CategoriesRepository";
 import { createCategoryController } from "../modules/cars/useCases/createCategory/index";
+import { listCategoriesController } from "../modules/cars/useCases/listCategories/index";
+import { listCategoryByNameController } from "../modules/cars/useCases/listCategoryByName/index";
 
 const categoriesRoutes = Router();
-const categoriesRepository = new CategoriesRepository();
+const categoriesRepository = CategoriesRepository.getInstance();
 
 function catecoryAlreadyExists(request, response, next) {
   const { name } = request.body;
@@ -35,17 +37,11 @@ function categoryDontExists(request, response, next) {
 }
 
 categoriesRoutes.get("/", (request, response) => {
-  const listOfCategories = categoriesRepository.list();
-
-  return response.status(200).json(listOfCategories);
+  return listCategoriesController.handle(request, response);
 });
 
 categoriesRoutes.get("/:name", categoryDontExists, (request, response) => {
-  const { name } = request.params;
-
-  const category = categoriesRepository.findByName(name);
-
-  return response.status(200).json(category);
+  return listCategoryByNameController.handle(request, response);
 });
 
 categoriesRoutes.post("/", catecoryAlreadyExists, (request, response) => {

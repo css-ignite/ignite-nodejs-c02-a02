@@ -1,10 +1,12 @@
 import { Router } from "express";
 
 import { SpecificationsRepository } from "../modules/cars/repositories/SpecificationsRepository";
-import { CreateSpecificationsService } from "../modules/cars/services/CreateSpecificationsService";
+import { createSpecificationsController } from "../modules/cars/useCases/createSpecifications/index";
+import { listSpecificationsController } from "../modules/cars/useCases/listSpecifications/index";
+import { listSpecificationsByNameController } from "../modules/cars/useCases/listSpecificationsByName/index";
 
 const specificationsRoutes = Router();
-const specificationsRepository = new SpecificationsRepository();
+const specificationsRepository = SpecificationsRepository.getInstance();
 
 function specificationsAlreadyExists(request, response, next) {
   const { name } = request.body;
@@ -37,20 +39,14 @@ function SpecificationsDontExists(request, response, next) {
 }
 
 specificationsRoutes.get("/", (request, response) => {
-  const listOfSpecifications = specificationsRepository.list();
-
-  return response.status(200).json(listOfSpecifications);
+  return listSpecificationsController.handle(request, response);
 });
 
 specificationsRoutes.get(
   "/:name",
   SpecificationsDontExists,
   (request, response) => {
-    const { name } = request.params;
-
-    const Specifications = specificationsRepository.findByName(name);
-
-    return response.status(200).json(Specifications);
+    return listSpecificationsByNameController.handle(request, response);
   }
 );
 
@@ -58,28 +54,7 @@ specificationsRoutes.post(
   "/",
   specificationsAlreadyExists,
   (request, response) => {
-    try {
-      const { name, description } = request.body;
-
-      const createSpecificationsService = new CreateSpecificationsService(
-        specificationsRepository
-      );
-
-      const Specifications = createSpecificationsService.execute({
-        name,
-        description,
-      });
-
-      return response.status(201).json({
-        message: "Specifications created successfully!",
-        data: Specifications,
-      });
-    } catch (error) {
-      return response.status(400).json({
-        message: "Failed to create Specifications!",
-        data: error,
-      });
-    }
+    return createSpecificationsController.handle(request, response);
   }
 );
 
