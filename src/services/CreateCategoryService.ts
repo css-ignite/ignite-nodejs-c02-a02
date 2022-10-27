@@ -47,6 +47,7 @@ class CreateCategoryService {
         Aqui eu chamo o repository para criar uma nova categoria
         e passo o objeto com as informações da categoria
        */
+
       return this.categoriesRepository.create({ name, description });
     } catch (error) {
       /*
