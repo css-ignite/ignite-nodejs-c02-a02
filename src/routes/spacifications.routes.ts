@@ -6,7 +6,7 @@ import { CreateSpecificationsService } from "../modules/cars/services/CreateSpec
 const specificationsRoutes = Router();
 const specificationsRepository = new SpecificationsRepository();
 
-function catecoryAlreadyExists(request, response, next) {
+function specificationsAlreadyExists(request, response, next) {
   const { name } = request.body;
 
   const specifications = specificationsRepository.findByName(name);
@@ -54,29 +54,33 @@ specificationsRoutes.get(
   }
 );
 
-specificationsRoutes.post("/", catecoryAlreadyExists, (request, response) => {
-  try {
-    const { name, description } = request.body;
+specificationsRoutes.post(
+  "/",
+  specificationsAlreadyExists,
+  (request, response) => {
+    try {
+      const { name, description } = request.body;
 
-    const createSpecificationsService = new CreateSpecificationsService(
-      specificationsRepository
-    );
+      const createSpecificationsService = new CreateSpecificationsService(
+        specificationsRepository
+      );
 
-    const Specifications = createSpecificationsService.execute({
-      name,
-      description,
-    });
+      const Specifications = createSpecificationsService.execute({
+        name,
+        description,
+      });
 
-    return response.status(201).json({
-      message: "Specifications created successfully!",
-      data: Specifications,
-    });
-  } catch (error) {
-    return response.status(400).json({
-      message: "Failed to create Specifications!",
-      data: error,
-    });
+      return response.status(201).json({
+        message: "Specifications created successfully!",
+        data: Specifications,
+      });
+    } catch (error) {
+      return response.status(400).json({
+        message: "Failed to create Specifications!",
+        data: error,
+      });
+    }
   }
-});
+);
 
 export { specificationsRoutes };
