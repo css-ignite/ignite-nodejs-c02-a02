@@ -1,4 +1,4 @@
-import { Category } from "../models/Category";
+import { Category } from "../models/CategoryModel";
 
 /*
     Interface para tipar o objeto que será passado como parâmetro para o método execute

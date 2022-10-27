@@ -4,7 +4,7 @@
   e para criar uma nova categoria
  */
 
-import { Category } from "../models/Category";
+import { Category } from "../models/CategoryModel";
 import {
   ICategoryRepository,
   ICreateCategoryDTO,
