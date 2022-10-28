@@ -1,6 +1,6 @@
 import { CategoriesRepository } from "../../repositories/implementation/CategoriesRepository";
-import { ListCategoryByNameController } from "./ListCategoryByNameController";
-import { ListCategoryByNameUseCase } from "./ListCategoryByNameUseCase";
+import { ListCategoryByNameController } from "./definitions/ListCategoryByNameController";
+import { ListCategoryByNameUseCase } from "./definitions/ListCategoryByNameUseCase";
 
 const categoriesRepository = CategoriesRepository.getInstance();
 

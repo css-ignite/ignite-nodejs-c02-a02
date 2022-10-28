@@ -1,4 +1,4 @@
-import { ICategoryRepository } from "../../repositories/ICategoriesRepository";
+import { ICategoryRepository } from "../../../repositories/ICategoriesRepository";
 
 class ListCategoryUseCase {
   constructor(private categoriesRepository: ICategoryRepository) {}

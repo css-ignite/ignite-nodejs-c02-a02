@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import { CategoriesRepository } from "../modules/cars/repositories/implementation/CategoriesRepository";
-import { createCategoryController } from "../modules/cars/useCases/createCategory/index";
-import { listCategoriesController } from "../modules/cars/useCases/listCategories/index";
-import { listCategoryByNameController } from "../modules/cars/useCases/listCategoryByName/index";
+import { CategoriesRepository } from "../../modules/cars/repositories/implementation/CategoriesRepository";
+import { createCategoryController } from "../../modules/cars/useCases/createCategory/index";
+import { listCategoriesController } from "../../modules/cars/useCases/listCategories/index";
+import { listCategoryByNameController } from "../../modules/cars/useCases/listCategoryByName/index";
 
 const categoriesRoutes = Router();
 const categoriesRepository = CategoriesRepository.getInstance();
