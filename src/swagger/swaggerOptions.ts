@@ -1,42 +1,34 @@
-import { swaggerApiErrorSchema } from "./swaggerApiErrorSchema";
-import { swaggerApiResponseSchema } from "./swaggerApiResponseSchema";
-import { swaggerCategorySchema } from "./swaggerCategorySchema";
-import { swaggerSpecificationsSchema } from "./swaggerSpecificationsSchema";
+import { swaggerApiErrorSchema } from "./schemas/swaggerApiErrorSchema";
+import { swaggerApiResponseSchema } from "./schemas/swaggerApiResponseSchema";
+import { swaggerCategorySchema } from "./schemas/swaggerCategorySchema";
+import { swaggerSpecificationsSchema } from "./schemas/swaggerSpecificationsSchema";
 
 const swaggerApiDescription = `
-  <h1>aa</h1>
-  This is a sample Pet Store Server based on the OpenAPI 3.0 specification. \n
-  You can find out more about Swagger at [https://swagger.io](https://swagger.io). \n
-  In the third iteration of the pet store, we've switched to the design first approach!
-  You can now help us improve the API whether it's by making changes to the definition itself or to the code.
-  That way, with time, we can improve the API in general, and expose some of the new features in OAS3.\n\n
-  If you're looking for the Swagger 2.0/OAS 2.0 version of Petstore, then click:
-  [here](https://editor.swagger.io/?url=https://petstore.swagger.io/v2/swagger.yaml).
-  Alternatively, you can load via the Edit > Load Petstore OAS 2.0 menu option!_
-  Some useful links:
-  - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
-  - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.ya
+  <p style="line-height: 0">API desenvolvida durante as aulas do curso Ignite Trilha NodeJS.\n
+  Esta api foi desenvolvida baseada na OpenAPI 3.0 specification. \n
+  Você pode conhecer um pouco mais sobre o swagger em [https://swagger.io](https://swagger.io). \n
+  Esta API foi desenvolvida durante as aulas do curso Ignite da Rocketseat. Durante as aulas fui
+  aprendendo sobre o desenvolvimento de APIs utilizando NodeJS e Typescript e durante seu desenvolvimento
+  fui apresentado aso conceitos do SOLID onde pude aplicar alguns de seus conceitos como o Single Responsability Principle,
+  Dependency Inversion Principle e o liskov substitution principle.\n
+  Trabalhamos também com a organização a estrutura de pastas e arquivos do projeto, e finalizamos com a documentação da API
+  utilizando o swagger.\n
+  Como conteúdo adicional busquei formas de melorar o processo de documentação e pude aplicar algumas técnicas utilizando o
+  wagger-jsdoc e o swagger-autogen para gerar a documentação automatica a API no momento de sua execução o que possibilita manter
+  a API sempre atualizada sem muito esforço, apliquei tamtém uma estilizaçao na API com o ReDoc.\n
+  </p>
   `;
 
 const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.3",
     info: {
-      title: "SPALLA - Api de Integração 1.0",
-      version: "1.0.11",
+      title: "RentalX - Api de Integração",
+      version: "1.0.0",
       description: swaggerApiDescription,
-      termsOfService: "http://swagger.io/terms/",
       contact: {
-        email: "apiteam@swagger.io",
+        email: "claudneysartisessa@gmail.com",
       },
-      license: {
-        name: "Apache 2.0",
-        url: "http://www.apache.org/licenses/LICENSE-2.0.html",
-      },
-    },
-    externalDocs: {
-      description: "Find out more about Swagger",
-      url: "http://swagger.io",
     },
     servers: [
       {

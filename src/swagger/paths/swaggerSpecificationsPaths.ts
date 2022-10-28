@@ -3,7 +3,7 @@
  * /specifications:
  *   post:
  *     tags:
- *       - especificações
+ *       - Especificações
  *     summary: Cadastro de especificações
  *     description: Cadastrar uma nova especificação
  *     operationId: addSpecifications
@@ -36,7 +36,7 @@
  *              $ref: '#/components/schemas/ApiError'
  *   get:
  *     tags:
- *       - especificações
+ *       - Especificações
  *     summary: Listar especificações
  *     description: Listar todas as especificações cadastradas
  *     responses:
@@ -51,7 +51,7 @@
  * /specifications/{name}:
  *   get:
  *     tags:
- *       - especificações
+ *       - Especificações
  *     summary: Listar especificações
  *     description: Listar especificações pelo nome
  *     operationId: getSpecificationsByName

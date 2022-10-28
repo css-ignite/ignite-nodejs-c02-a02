@@ -3,7 +3,7 @@
  * /categories:
  *   post:
  *     tags:
- *       - categories
+ *       - Categorias
  *     summary: Cadastro de categorias
  *     description: Cadastrar uma nova categoria
  *     operationId: addCategory
@@ -32,7 +32,7 @@
  *        description: Invalid input
  *   get:
  *     tags:
- *       - categories
+ *       - Categorias
  *     summary: Listar categorias
  *     description: Listar todas as categorias cadastradas
  *     responses:
@@ -47,7 +47,7 @@
  * /categories/{name}:
  *   get:
  *     tags:
- *       - categories
+ *       - Categorias
  *     summary: Listar categorias
  *     description: Listar categorias pelo nome
  *     operationId: getCategoriesByName
