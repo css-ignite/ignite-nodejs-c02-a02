@@ -22,7 +22,7 @@ class CategoriesRepository implements ICategoryRepository {
     return CategoriesRepository.INSTANCE;
   }
 
-  create({ name, description }: ICreateCategoryDTO) {
+  create({ name, description }: ICreateCategoryDTO): CategoryModel {
     const category = new CategoryModel();
 
     Object.assign(category, {

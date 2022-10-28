@@ -1,12 +1,18 @@
 import { Router } from "express";
+import multer from "multer";
 
 import { CategoriesRepository } from "../../modules/cars/repositories/implementation/CategoriesRepository";
 import { createCategoryController } from "../../modules/cars/useCases/createCategory/index";
+import { importCategoriesController } from "../../modules/cars/useCases/importCategories";
 import { listCategoriesController } from "../../modules/cars/useCases/listCategories/index";
 import { listCategoryByNameController } from "../../modules/cars/useCases/listCategoryByName/index";
 
 const categoriesRoutes = Router();
 const categoriesRepository = CategoriesRepository.getInstance();
+
+const upload = multer({
+  dest: "./tmp",
+});
 
 function catecoryAlreadyExists(request, response, next) {
   const { name } = request.body;
@@ -46,6 +52,10 @@ categoriesRoutes.get("/:name", categoryDontExists, (request, response) => {
 
 categoriesRoutes.post("/", catecoryAlreadyExists, (request, response) => {
   return createCategoryController.handle(request, response);
+});
+
+categoriesRoutes.post("/import", upload.single("file"), (request, response) => {
+  return importCategoriesController.handle(request, response);
 });
 
 export { categoriesRoutes };
