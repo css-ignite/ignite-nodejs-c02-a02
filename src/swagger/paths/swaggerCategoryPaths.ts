@@ -44,21 +44,20 @@
  *              type: array
  *              items:
  *                  $ref: '#/components/schemas/Category'
- * /categories/import/csv:
- *   post:
+ * /categories/{name}:
+ *   get:
  *     tags:
  *       - Categorias
- *     summary: Importação de Cadastro de categorias
- *     description: Importar um CSV para Cadastrar um lista de categorias
- *     operationId: addCategory
- *     requestBody:
- *       description: Criar uma categoria
- *       content:
- *         image/png:
- *           schema:
- *             type: string
- *             format: binary
- *       required: true
+ *     summary: Listar categorias por nome
+ *     description: Listar uma determinada categoria pelo nome
+ *     operationId: getCategoriesByName
+ *     parameters:
+ *       - name: name
+ *         in: path
+ *         description: Nome da categoria
+ *         required: true
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *        description: Successful operation
@@ -72,20 +71,24 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ApiError'
- * /categories/{name}:
- *   get:
+ * /categories/import/csv:
+ *   post:
  *     tags:
  *       - Categorias
- *     summary: Listar categorias
- *     description: Listar categorias pelo nome
- *     operationId: getCategoriesByName
- *     parameters:
- *       - name: name
- *         in: path
- *         description: Nome da categoria
- *         required: true
- *         schema:
- *           type: string
+ *     summary: Importação de Cadastro de categorias
+ *     description: Importar um CSV para Cadastrar um lista de categorias
+ *     operationId: importCategory
+ *     requestBody:
+ *       description: Criar uma categoria
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *       required: true
  *     responses:
  *       200:
  *        description: Successful operation

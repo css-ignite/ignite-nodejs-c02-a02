@@ -8,11 +8,11 @@ const swaggerRoutes = Router();
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
-// swaggerRoutes.use(
-//   "/swagger/default",
-//   swaggerUi.serve,
-//   swaggerUi.setup(swaggerDocs)
-// );
+swaggerRoutes.use(
+  "/swagger/docs/default",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocs)
+);
 
 swaggerRoutes.use("/swagger", swaggerUi.serve);
 
