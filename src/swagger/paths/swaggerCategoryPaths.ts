@@ -44,6 +44,34 @@
  *              type: array
  *              items:
  *                  $ref: '#/components/schemas/Category'
+ * /categories/import/csv:
+ *   post:
+ *     tags:
+ *       - Categorias
+ *     summary: Importação de Cadastro de categorias
+ *     description: Importar um CSV para Cadastrar um lista de categorias
+ *     operationId: addCategory
+ *     requestBody:
+ *       description: Criar uma categoria
+ *       content:
+ *         image/png:
+ *           schema:
+ *             type: string
+ *             format: binary
+ *       required: true
+ *     responses:
+ *       200:
+ *        description: Successful operation
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Category'
+ *       400:
+ *         description: Category dont exists!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
  * /categories/{name}:
  *   get:
  *     tags:

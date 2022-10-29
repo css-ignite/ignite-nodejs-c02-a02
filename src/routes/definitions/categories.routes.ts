@@ -54,8 +54,12 @@ categoriesRoutes.post("/", catecoryAlreadyExists, (request, response) => {
   return createCategoryController.handle(request, response);
 });
 
-categoriesRoutes.post("/import", upload.single("file"), (request, response) => {
-  return importCategoriesController.handle(request, response);
-});
+categoriesRoutes.post(
+  "/import/csv",
+  upload.single("file"),
+  (request, response) => {
+    return importCategoriesController.handle(request, response);
+  }
+);
 
 export { categoriesRoutes };
